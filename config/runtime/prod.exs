@@ -75,15 +75,15 @@ config :explorer, Explorer.Repo.RSK,
   pool_size: 1,
   ssl: ExplorerConfigHelper.ssl_enabled?()
 
-# Configures Suave database
-config :explorer, Explorer.Repo.Suave,
-  url: ExplorerConfigHelper.get_suave_db_url(),
-  pool_size: 1,
-  ssl: ExplorerConfigHelper.ssl_enabled?()
-
 # Configures Shibarium database
 config :explorer, Explorer.Repo.Shibarium,
   url: System.get_env("DATABASE_URL"),
+  pool_size: 1,
+  ssl: ExplorerConfigHelper.ssl_enabled?()
+
+# Configures Suave database
+config :explorer, Explorer.Repo.Suave,
+  url: ExplorerConfigHelper.get_suave_db_url(),
   pool_size: 1,
   ssl: ExplorerConfigHelper.ssl_enabled?()
 
