@@ -53,8 +53,8 @@ defmodule BlockScoutWeb.API.V2.BlockView do
       "uncles_hashes" => prepare_uncles(block.uncle_relations),
       # "state_root" => "TODO",
       "rewards" => prepare_rewards(block.rewards, block, single_block?),
-      "gas_target_percentage" => gas_target(block),
-      "gas_used_percentage" => gas_used_percentage(block),
+      "gas_target_percentage" => Block.gas_target(block),
+      "gas_used_percentage" => Block.gas_used_percentage(block),
       "burnt_fees_percentage" => burnt_fees_percentage(burnt_fees, transaction_fees),
       "type" => block |> BlockView.block_type() |> String.downcase(),
       "tx_fees" => transaction_fees,
@@ -82,24 +82,6 @@ defmodule BlockScoutWeb.API.V2.BlockView do
 
   def prepare_uncle(uncle_relation) do
     %{"hash" => uncle_relation.uncle_hash}
-  end
-
-  def gas_target(block) do
-    if Decimal.compare(block.gas_limit, 0) == :gt do
-      elasticity_multiplier = Application.get_env(:explorer, :elasticity_multiplier)
-      ratio = Decimal.div(block.gas_used, Decimal.div(block.gas_limit, elasticity_multiplier))
-      ratio |> Decimal.sub(1) |> Decimal.mult(100) |> Decimal.to_float()
-    else
-      Decimal.new(0)
-    end
-  end
-
-  def gas_used_percentage(block) do
-    if Decimal.compare(block.gas_limit, 0) == :gt do
-      block.gas_used |> Decimal.div(block.gas_limit) |> Decimal.mult(100) |> Decimal.to_float()
-    else
-      Decimal.new(0)
-    end
   end
 
   def burnt_fees_percentage(_, %Decimal{coef: 0}), do: nil
