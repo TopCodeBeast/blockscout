@@ -98,18 +98,13 @@ defmodule EthereumJSONRPC.Variant do
   def get do
     variant = System.get_env("ETHEREUM_JSONRPC_VARIANT", "nethermind")
 
-    cond do
-      is_nil(variant) ->
-        "nethermind"
-
-      variant == "parity" ->
-        "nethermind"
-
-      true ->
-        variant
-        |> String.split(".")
-        |> List.last()
-        |> String.downcase()
+    if variant == "parity" do
+      "nethermind"
+    else
+      variant
+      |> String.split(".")
+      |> List.last()
+      |> String.downcase()
     end
   end
 end

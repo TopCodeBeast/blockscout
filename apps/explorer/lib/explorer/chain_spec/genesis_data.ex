@@ -27,7 +27,7 @@ defmodule Explorer.ChainSpec.GenesisData do
   # Callback for errored fetch
   @impl GenServer
   def handle_info({_ref, {:error, reason}}, state) do
-    Logger.warn(fn -> "Failed to fetch genesis data '#{reason}'." end)
+    Logger.warning(fn -> "Failed to fetch genesis data '#{reason}'." end)
 
     fetch_genesis_data()
 
@@ -76,11 +76,11 @@ defmodule Explorer.ChainSpec.GenesisData do
 
           {:error, reason} ->
             # credo:disable-for-next-line
-            Logger.warn(fn -> "Failed to fetch genesis data. #{inspect(reason)}" end)
+            Logger.warning(fn -> "Failed to fetch genesis data. #{inspect(reason)}" end)
         end
       end)
     else
-      Logger.warn(fn -> "Failed to fetch genesis data. Chain spec path is not set." end)
+      Logger.warning(fn -> "Failed to fetch genesis data. Chain spec path is not set." end)
     end
   end
 
