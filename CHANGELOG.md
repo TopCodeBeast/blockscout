@@ -34,6 +34,7 @@
 
 ### Chore
 
+- [#9257](https://github.com/blockscout/blockscout/pull/9257) - Retry token instance metadata fetch from baseURI + tokenID
 - [#9233](https://github.com/blockscout/blockscout/pull/9233) - "cataloged" index on tokens table
 - [#9198](https://github.com/blockscout/blockscout/pull/9198) - Make Postgres@15 default option
 - [#9197](https://github.com/blockscout/blockscout/pull/9197) - Add `MARKET_HISTORY_FETCH_INTERVAL` env
