@@ -4,6 +4,8 @@
 
 ### Features
 
+- [#9282](https://github.com/blockscout/blockscout/pull/9282) - Add `license_type` to smart contracts
+
 ### Fixes
 
 ### Chore
