@@ -12,7 +12,7 @@ on:
 env:
   OTP_VERSION: '26.2.1'
   ELIXIR_VERSION: '1.16.0'
-  RELEASE_VERSION: 6.0.0
+  RELEASE_VERSION: 6.1.0
 
 jobs:
   push_to_registry:
